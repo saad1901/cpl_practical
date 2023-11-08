@@ -4,7 +4,8 @@ rad = st.radio('select',['reverse number','Fabonacci','multiplication Table',
                          'remove space','Factorial','celcius to farenheit',
                          'distance','object oriented','traverse a tuple',
                          'graph plot','sine and cosine waves','odd index',
-                         'square and cube','tkinter'])
+                         'square and cube','tkinter','dictionary','hypotenuse',
+                         'common words','volume','2d list using pandas'])
 
 if rad == 'tkinter':
     code = """
@@ -284,4 +285,94 @@ for i in T:
 newtup= tuple(list)
 print(newtup)
     """
+    st.code(code, language="python")    
+
+elif rad == 'printing lines':
+    code = """
+st.text('You done it bae')
+    """
+    st.code(code, language="python")  
+
+elif rad == 'dictionary':
+    code = """
+def Histogram(word):
+    empty_dict = {}
+    for i in word:
+        empty_dict[i] = empty_dict.get(i, 0) + 1
+    return empty_dict
+
+v = Histogram("AAPPLE")
+print(v)
+    """
+    st.code(code, language="python")      
+
+elif rad == 'hypotenuse':
+    code = """
+import math
+
+print('consider a Right angle triangle ABC at B')
+
+a = int(input('Enter length of AB :'))
+b = int(input('Enter length of BC :'))
+
+hyp = math.sqrt(a*2 + b*2)
+print(f'hypotenuse : {round(hyp,2)}cm')
+    """
+    st.code(code, language="python")    
+
+elif rad == 'common words':
+    code = """
+#common words
+words1 = input('Enter 1st word : ')
+words1 = words1.lower()
+words2 = input('Enter 2nd word : ')
+words2 = words2.lower()
+
+words1 = words1.split()
+words2 = words2.split()
+
+common_words = set(words1) & set(words2)
+
+print("Common words between word1 and word2:")
+for word in common_words:
+    print(word)
+    """
     st.code(code, language="python")
+
+elif rad == 'volume':
+    code = """
+#volume    
+class Box:
+    def _init_(self, length, width, height):
+        self.length = length
+        self.width = width
+        self.height = height
+    def calculate_volume(self):
+        volume = self.length * self.width * self.height
+        return volume
+length = float(input("Enter the length of the box: "))
+width = float(input("Enter the width of the box: "))
+height = float(input("Enter the height of the box: "))
+
+my_box = Box(length, width, height)
+
+volume = my_box.calculate_volume()
+
+print(f"The volume of the box is: {volume} cubic unit")
+    """
+    st.code(code, language="python")  
+
+elif rad == '2d list using pandas':
+    code = """
+import pandas as pd
+# Two-dimensional list
+two_dim_list = [
+    [1, 'Alice', 25],
+    [2, 'Bob', 30],
+    [3, 'Charlie', 35],
+    [4, 'David', 40]
+]
+df = pd.DataFrame(two_dim_list, columns=['ID', 'Name', 'Age'])
+print(df)
+    """
+    st.code(code, language="python")      
