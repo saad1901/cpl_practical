@@ -381,7 +381,7 @@ elif rad == 'sql connectivity':
     code = """
 #connectivity sql
 import sqlite3
-
+print('Connection to sql database is Made Successfully')
 conn = sqlite3.connect('mydatabase.db')
 
 cursor = conn.cursor()
