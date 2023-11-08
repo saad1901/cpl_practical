@@ -551,4 +551,4 @@ greet_message(name="pooja")
     """
     st.code(code, language="python")
 elif rad == '':
-	st.text_input('Report a Problem')
+	st.text_area('Report a Problem')
