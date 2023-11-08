@@ -5,7 +5,10 @@ rad = st.radio('select',['reverse number','Fabonacci','multiplication Table',
                          'distance','object oriented','traverse a tuple',
                          'graph plot','sine and cosine waves','odd index',
                          'square and cube','tkinter','dictionary','hypotenuse',
-                         'common words','volume','2d list using pandas'])
+                         'common words','volume','2d list using pandas','sql connectivity',
+                         'time series','df using list of tuples','pandas csv',
+                         'jupyter','keyword and pos arg',
+                         'pandas using np func'])
 
 if rad == 'tkinter':
     code = """
@@ -364,15 +367,185 @@ print(f"The volume of the box is: {volume} cubic unit")
 
 elif rad == '2d list using pandas':
     code = """
-import pandas as pd
-# Two-dimensional list
-two_dim_list = [
-    [1, 'Alice', 25],
-    [2, 'Bob', 30],
-    [3, 'Charlie', 35],
-    [4, 'David', 40]
-]
-df = pd.DataFrame(two_dim_list, columns=['ID', 'Name', 'Age'])
-print(df)
+# import pandas as pd 
+import pandas as pd 
+list = [['Alice', 25], ['Charlie', 30], 
+	['John', 26], ['Bob', 22]] 
+ 
+df = pd.DataFrame(list, columns =['Name', 'number']) 
+print(df) 
     """
     st.code(code, language="python")      
+
+elif rad == 'sql connectivity':
+    code = """
+#connectivity sql
+import sqlite3
+
+conn = sqlite3.connect('mydatabase.db')
+
+cursor = conn.cursor()
+
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS students (
+        id INTEGER PRIMARY KEY,
+        name TEXT
+    )
+''')
+
+cursor.execute("INSERT INTO students (name) VALUES ('Raj')")
+cursor.execute("INSERT INTO students (name) VALUES ('Veer')")
+
+cursor.execute("DELETE FROM students WHERE name = 'Veer'")
+
+conn.commit()
+
+cursor.execute('SELECT * FROM students')
+data = cursor.fetchall()
+for row in data:
+    print(f"Student ID: {row[0]}, Name: {row[1]}")
+
+conn.close()
+    """
+    st.code(code, language="python") 
+
+elif rad == 'time series':
+    code = """
+#time series manipulation
+
+import pandas as pd
+from datetime import datetime
+import numpy as np
+
+range_date = pd.date_range(start ='1/1/2019', end ='1/08/2019',freq ='Min')
+
+df = pd.DataFrame(range_date, columns =['date'])
+df['data'] = np.random.randint(0, 100, size =(len(range_date)))
+
+print(df.head(10))
+    """
+    st.code(code, language="python")      
+
+elif rad == 'df using list of tuples':
+    code = """
+#pandas df using list of tuples    
+import pandas as pd
+
+data = [
+    ('Alice', 25, 'Engineer'),
+    ('Bob', 30, 'Data Scientist'),
+    ('Charlie', 35, 'Designer'),
+    ('Diana', 27, 'Developer'),
+]
+df = pd.DataFrame(data, columns=['Name', 'Age', 'Occupation'])
+print(df)
+
+    """
+    st.code(code, language="python") 
+
+elif rad == 'pandas csv':
+    code = """
+#pandas csv and missing data    
+import pandas as pd
+
+df = pd.read_csv('csv_location')  
+
+missing_data = df.isnull()
+
+df_cleaned = df.dropna()
+
+df_filled = df.fillna('N/A')
+
+df_interpolated = df.interpolate()
+
+print("Original DataFrame:")
+print(df)
+
+print("\nDataFrame with missing data dropped:")
+print(df_cleaned)
+
+print("\nDataFrame with missing data filled:")
+print(df_filled)
+
+print("\nDataFrame with missing data interpolated:")
+print(df_interpolated)
+    """
+    st.code(code, language="python")    
+
+elif rad == 'pandas using np func':
+    code = """
+#pandas series using numpy functions
+import pandas as pd 
+import numpy as np 
+    
+ser1 = pd.Series(np.linspace(3, 33, 3)) 
+print(ser1) 
+  
+ser2 = pd.Series(np.linspace(1, 100, 10)) 
+print("\n", ser2)
+    """
+    st.code(code, language="python")
+
+
+
+elif rad == 'jupyter':
+    code = """
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 10, 20) 
+y1 = x**2 
+y2 = np.sin(x)  
+data = {'x': x, 'y1': y1, 'y2': y2}
+
+
+df = pd.DataFrame(data)
+
+# Line plot
+plt.figure(figsize=(8, 4))
+plt.plot(df['x'], df['y1'], label='x^2', color='blue')
+plt.plot(df['x'], df['y2'], label='sin(x)', color='red')
+plt.title('Line Plot')
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# Bar plot
+plt.figure(figsize=(8, 4))
+plt.bar(df['x'], df['y1'], label='x^2', color='green', alpha=0.5)
+plt.title('Bar Plot')
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# Scatter plot
+plt.figure(figsize=(8, 4))
+plt.scatter(df['x'], df['y2'], label='sin(x)', color='orange')
+plt.title('Scatter Plot')
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+plt.legend()
+plt.grid(True)
+plt.show()
+    """
+    st.code(code, language="python")
+    
+elif rad == 'keyword and pos arg':
+    code = """
+def greet_message(name, message="Hello"):
+    print(f"{message}, {name}!")
+
+# Using positional arguments
+greet_message("Ajay")  
+greet_message("David", "Hi")  
+
+# Using keyword arguments
+greet_message(message="Hey", name="Raja")  
+greet_message(name="pooja") 
+    """
+    st.code(code, language="python")
