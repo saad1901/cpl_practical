@@ -1,6 +1,7 @@
 import streamlit as st
-
-rad = st.radio('select',['reverse number','Fabonacci','multiplication Table',
+st.title('Connecting to Python 3.11 Compiler')
+st.subheader('making connection to server.......')
+rad = st.selectbox('select',['','reverse number','Fabonacci','multiplication Table',
                          'remove space','Factorial','celcius to farenheit',
                          'distance','object oriented','traverse a tuple',
                          'graph plot','sine and cosine waves','odd index',
